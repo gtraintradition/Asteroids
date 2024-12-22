@@ -17,7 +17,7 @@ def main():
     # player spawn coordinates
     spawn_x = SCREEN_WIDTH / 2
     spawn_y = SCREEN_HEIGHT / 2
-    
+
     player_1 = Player(spawn_x, spawn_y)
 
 
@@ -33,6 +33,8 @@ def main():
             if event.type == pygame.QUIT:
                 return
             
+        player_1.update(dt)
+
         screen.fill((0, 0, 0))
         player_1.draw(screen)
         pygame.display.flip()
