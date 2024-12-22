@@ -1,10 +1,9 @@
-# this allows us to use code from
-# the open-source pygame library
-# throughout this file
 import pygame
 
 from constants import *
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 
@@ -20,10 +19,14 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
 
     player_1 = Player(spawn_x, spawn_y)
+    asteroid_field_1 = AsteroidField()
 
 
     dt = 0
@@ -41,7 +44,6 @@ def main():
                 return
             
         #player_1.update(dt)
-        #updatable.update(dt)
 
         for obj in updatable:
             obj.update(dt)
@@ -49,7 +51,6 @@ def main():
 
         screen.fill("black")
         #player_1.draw(screen)
-        #drawable.draw(screen)
 
         for obj in drawable:
             obj.draw(screen)
